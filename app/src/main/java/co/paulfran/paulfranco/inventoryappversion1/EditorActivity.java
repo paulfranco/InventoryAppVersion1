@@ -1,6 +1,7 @@
 package co.paulfran.paulfranco.inventoryappversion1;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -73,9 +74,11 @@ public class EditorActivity extends AppCompatActivity {
         long newRowID = db.insert(ProductContract.ProductEntry.TABLE_NAME, null, values);
 
         if (newRowID == -1) {
-            Toast.makeText(this, "Error Saving Product", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_saving, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Product Saved with Row IDL " + newRowID, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.product_saved) + newRowID, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(EditorActivity.this, MainActivity.class);
+            startActivity(intent);
         }
 
     }
